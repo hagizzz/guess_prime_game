@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+
+import { useEffect, useState } from 'react';
 import './App.css';
+import Home from './Home'
+import Game from './Game'
+import Gameover from './Gameover'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [score, setScore] = useState(0)
+    const [prime, setPrime] = useState(13)
+    const [check, setCheck] = useState(true)
+
+    function handleScoreChange(value) {
+        setScore(value)
+    }
+
+    function handlePrimeChange(value) {
+        setPrime(value)
+    }
+
+    function navigatePage(pathName) {
+        window.history.pushState(null, "", `/${pathName}`)
+        setCheck(check => !check)
+    }
+
+    function Page() {
+        let pageName = window.location.pathname
+
+        if (pageName === '/') {
+            return <Home score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
+        }
+        if (pageName === '/game') {
+            return <Game score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
+        }
+        if (pageName === '/gameover') {
+            return <Gameover score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
+        }
+
+        return <div>Page not found</div>
+    }
+
+    return Page()
 }
 
 export default App;
