@@ -1,9 +1,8 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Home from './Home'
-import Game from './Game'
-import Gameover from './Gameover'
+import Game from './pages/Game'
+import Gameover from './pages/Gameover'
 
 function App() {
     const [score, setScore] = useState(0)
@@ -25,11 +24,7 @@ function App() {
 
     function Page() {
         let pageName = window.location.pathname
-
-        if (pageName === '/') {
-            return <Home score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
-        }
-        if (pageName === '/game') {
+        if (pageName === '/guessprime') {
             return <Game score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
         }
         if (pageName === '/gameover') {
@@ -39,7 +34,7 @@ function App() {
         return <div>Page not found</div>
     }
 
-    return Page()
+    return <Page />
 }
 
 export default App;

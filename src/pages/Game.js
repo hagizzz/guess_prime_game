@@ -1,6 +1,6 @@
 import './Game.scss'
 import { useState, useEffect } from 'react';
-import Card from './Card';
+import Card from '../components/Card';
 
 function Game(props) {
     const [timeRem, setTimeRem] = useState(30)
@@ -44,22 +44,20 @@ function Game(props) {
     function clickYes() {
         if (checkPrime(props.prime)) {
            props.changeScore(props.score + 1)
+           showRandomPrime()
         } else {
             props.navigatePage('gameover')
 
         }
-
-        showRandomPrime()
     }
 
     function clickNo() {
         if (!checkPrime(props.prime)) {
             props.changeScore(props.score + 1)
+            showRandomPrime()
         } else {
             props.navigatePage('gameover')
         }
-
-        showRandomPrime()
     }
 
     return (

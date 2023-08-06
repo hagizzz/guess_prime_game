@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
-#home-container {
+#gameover-container {
+    text-align: center;
     font-size: 16px;
     font-family: 'Josefin Sans', sans-serif;
+    transform: translateY(22vh);
+
+    sup {
+        margin-left: -10px;
+    }
+
+    p, button {
+        font-size: 3em;
+    }
 
     button {
-        margin: 0 20px;
-        color: #F7A4A4;
+        color: white;
+        margin: 0 10px;
         align-items: center;
         border-radius: 12px;
         box-shadow: transparent 0 0 0 3px,rgba(18, 18, 18, .1) 0 6px 15px;
@@ -27,16 +37,18 @@
         user-select: none;
         touch-action: manipulation;
         transition: all .1s;
+        background-color: #66bb6a;
 
         &:active {
             transform: translateY(2px);
             box-shadow: transparent 0 0 0 1px,rgba(18, 18, 18, .1) 0 3px 10px;
         }
     }
+    #btn-home {
+        background-color: #f44336;
+    }
 
-    h1 {
-        font-weight: bold;
-        font-size: 3em;
-        text-align: center;
+    .multiply-symbol {
+        margin: 0 10px;
     }
 }
