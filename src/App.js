@@ -24,7 +24,7 @@ function App() {
 
     function Page() {
         let pageName = window.location.pathname
-        if (pageName === '/guessprime') {
+        if (pageName === '/') {
             return <Game score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
         }
         if (pageName === '/gameover') {

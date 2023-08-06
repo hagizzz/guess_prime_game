@@ -54,7 +54,7 @@ function checkPrime(n) {
 function Gameover(props) {
     function clickStartAgain() {
         props.changeScore(0)
-        props.navigatePage('guessprime')
+        props.navigatePage('')
     }
 
     function PrimeResult() {
