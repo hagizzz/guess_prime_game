@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Game from './pages/Game'
 import Gameover from './pages/Gameover'
@@ -9,12 +9,15 @@ function App() {
     const [prime, setPrime] = useState(13)
     const [check, setCheck] = useState(true)
 
-    function handleScoreChange(value) {
-        setScore(value)
-    }
+    useEffect(() => {
+        setRandomPrime()
+    }, [])
 
-    function handlePrimeChange(value) {
-        setPrime(value)
+    function handleScoreChange(value) {
+        if (value === 0) {
+            setRandomPrime()
+        }
+        setScore(value)
     }
 
     function navigatePage(pathName) {
@@ -22,13 +25,21 @@ function App() {
         setCheck(check => !check)
     }
 
+    function randInt(min, max) {
+        return Math.floor(Math.random()*(max - min + 1)) + min
+    }
+
+    function setRandomPrime() {
+        setPrime(randInt(1,100))
+    }
+
     function Page() {
         let pageName = window.location.pathname
         if (pageName === '/') {
-            return <Game score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
+            return <Game score={score} prime={prime} setRandomPrime={setRandomPrime} changeScore={handleScoreChange} navigatePage={navigatePage} />
         }
         if (pageName === '/gameover') {
-            return <Gameover score={score} prime={prime} changePrime={handlePrimeChange} changeScore={handleScoreChange} navigatePage={navigatePage} />
+            return <Gameover score={score} prime={prime} changeScore={handleScoreChange} navigatePage={navigatePage} />
         }
 
         return <div>Page not found</div>

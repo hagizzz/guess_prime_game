@@ -15,8 +15,6 @@ function Game(props) {
                 }
             })
         }, 1000)
-
-        showRandomPrime()
     }, [])
 
     function checkPrime(n) {
@@ -33,28 +31,19 @@ function Game(props) {
         return true
     }
 
-    function randInt(min, max) {
-        return Math.floor(Math.random()*(max - min + 1)) + min
-    }
-
-    function showRandomPrime() {
-        props.changePrime(randInt(1,100))
-    }
-
     function clickYes() {
         if (checkPrime(props.prime)) {
            props.changeScore(props.score + 1)
-           showRandomPrime()
+           props.setRandomPrime()
         } else {
             props.navigatePage('gameover')
-
         }
     }
 
     function clickNo() {
         if (!checkPrime(props.prime)) {
             props.changeScore(props.score + 1)
-            showRandomPrime()
+            props.setRandomPrime()
         } else {
             props.navigatePage('gameover')
         }
